@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block style %}
+<script language="javascript">
+function time(){
+    var time= new Date();
+        document.getElementById("now").innerHTML=time.getHours()+"시"+time.getMinutes()+"분"+time.getSeconds()+"초";
+        setInterval("time()",1000);
+    }
+    </script>
+<style>
+    .article{
+        width : 500px;
+        background-color: rgb(7, 185, 185);
+        margin : auto;
+        padding : 0px;
+        border : 5px solid gray;
+        font-size : 20px;
+        text-align : center;
+        background-position: center;
+    }
+    .buttons{
+        font-style: initial;
+        text-align : center;
+        width : 250px;
+        margin : auto;
+    }
+    .writer{
+        width : 120px;
+        height : 120px;
+        background-color : darkslategray;
+        border-radius : 20px;
+        text-align : center;
+        font-style:unset;
+        background-size : cover;
+        color : white;
+        cursor : not-allowed;
+    }
+    .line{
+        width : 500px;
+        margin : auto;
+    }
+    .main{
+        background-color : gray;
+
+    }
+</style>
+{% endblock %}
+{% block contents %}
+    <div class = "main">
+    <div class = "article">
+        <p >안녕하세요. 홈페이지에 방문하신 것을 환영합니다.<br>
+        <h4> 현재 시간: <span id="now"></span></h4>
+        {% if request.session.user %}<div>로그인 정보 : <span style = "color: whitesmoke;">{{email}}</span>으로 로그인됨.<br><br>
+        <img width="300" height="250" alt = "귀여운 고양이"src="https://opgg-com-image.akamaized.net/attach/images/20210117043454.1428120.gif">
+        <figcaption style = "color : black; font-size : 20px;"><귀여운 고양이 사진></figcaption></div>
+        {%else%} <p onclick = "location.href = '/user/login'" style = "color: rgb(250, 34, 203);">로그인해 주세요.</p>
+        {% endif %}</p>
+    </div>
+
+    <div class = "line"><hr></div>
+
+    <div class = "buttons">
+    <button type ="button" onclick = "location.href = '/user/login'">LOGIN </button>
+    <button type ="button" onclick = "location.href = '/user/logout'">LOGOUT </button>
+    <button type ="button" onclick = "location.href = '/user/register'">REGISTER</button><br><br>
+    <button type ="button" onclick = "location.href = '/board/list'">BOARD </button>
+    <button type ="button" onclick = "location.href = '/admin'">ADMIN(ADMIN ONLY)</button><br><hr>
+    <button class= "writer" onclick = "location.href = 'https://www.facebook.com/profile.php?id=100008757436155'">제작자 페이스북</button>
+    </div>
+
+{% endblock %}

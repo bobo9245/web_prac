@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block contents %}
+    <form method="POST" action=".">
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <input type="{{ field.field.widget.input_type }}" id="{{ field.id_for_label }}" placeholder="{{ field.label }}" name="{{ field.name }}" >
+            </div>
+            {% if field.errors %}
+                <span style="color: red">{{ field.errors }}</span>
+            {% endif %}
+        {% endfor %}
+        <button onclick = "location.href = 'board/write'" type="submit">로그인</button>
+        <button type = "reset">입력된 데이터 지우기</button>
+    </form>
+{% endblock %}

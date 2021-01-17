@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+.msgbox{
+            background-color: rgb(199, 210, 255);
+            width: 400px;
+            color:black;
+            padding: 30px;
+            margin: 0px 0px 0px 0px;
+            font-size: 20px;
+            text-align: left;
+            line-height: 30px;
+            box-shadow: 0px 0px 10px 3px white;
+        }
+.text{
+    background-color: aqua;
+    width : 200px;
+    padding : 5px;
+    text-align :center;
+    height: 200px;
+}
+.text2{
+    background-color: aqua;
+    width : 200px;
+    padding : 5px;
+    text-align :center;
+    height: 20px;
+}
+</style>
+{% endblock %}
+{% block contents %}
+<div>
+    <div class = "msgbox">
+        <label for="title">제목</label>
+        <input type="text" id="title" value="{{ board.title }}" readonly class = "text2"><br>
+        <label for="contents">내용</label>
+        <textarea readonly class = "text">{{ board.contents }}</textarea>
+    </div>
+    <button onclick="location.href='/board/list/'">돌아가기</button>
+    <button onclick = "location.href = '/'">홈</button>
+</div>
+{% endblock %}
